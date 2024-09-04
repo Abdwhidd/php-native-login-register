@@ -12,4 +12,12 @@ class User {
         $this->email = $email;
         $this->password = $password;
     }
+
+    public function getId() {
+        return $this->id;
+    }
+
+    public function setId($id) {
+        $this->id = $id;
+    }
 }

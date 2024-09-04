@@ -45,6 +45,16 @@ class UserRepository {
         $stmt->bindParam(":email", $user->email);
         $stmt->bindParam(":password", password_hash($user->password, PASSWORD_BCRYPT));
         
-        return $stmt->execute();
+       
+        if ($stmt->execute()) {
+        
+        $lastInsertedId = $this->conn->lastInsertId();
+
+        $user->setId($lastInsertedId);
+
+        return $user; 
+        }
+
+        return null;  
     }
 }
