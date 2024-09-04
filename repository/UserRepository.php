@@ -8,25 +8,33 @@ class UserRepository {
         $this->conn = $conn;
     }
 
+    public function findByEmail($email) {
+        $query = "SELECT * FROM users WHERE email = :email LIMIT 1";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":email", $email);
+        $stmt->execute();
+        
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($row) {
+            return new User($row['id'], $row['name'], $row['email'], $row['password']);
+        }
+        return null;
+    }
+
     public function findById($id) 
     {
-         // Query untuk mencari pengguna berdasarkan ID
         $query = "SELECT * FROM users WHERE id = :id LIMIT 1";
         $stmt = $this->conn->prepare($query);
         
-        // Bind parameter ID ke query
         $stmt->bindParam(":id", $id, PDO::PARAM_INT);
         $stmt->execute();
         
-        // Mengambil hasil query
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         
-        // Jika pengguna ditemukan, membuat objek dan kembalikan objek User
         if ($row) {
             return new User($row['id'], $row['name'], $row['email'], $row['password']);
         }
         
-        // Jika tidak ditemukan, kembalikan null
         return null;
     }
 
