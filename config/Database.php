@@ -1,10 +1,10 @@
 <?php
 
 class Database {
-    private $host = "your host";
-    private $db_name = "your database name";
-    private $username = "your username";
-    private $password = "your password";
+    private $host = "127.0..1";
+    private $db_name = "phplogin_db";
+    private $username = "root";
+    private $password = "";
 
     public $conn;
 
@@ -21,6 +21,8 @@ class Database {
         } catch(PDOException $e) {
             echo 'Connection error: ' . $e->getMessage();
         }
+
         return $this->conn;
     }
+
 }
