@@ -1,10 +1,10 @@
 <?php
 
 class Database {
-    private $host = "127.0.0.1";
-    private $db_name = "phplogin_db";
-    private $username = "root";
-    private $password = "";
+    private $host = "your host";
+    private $db_name = "your database name";
+    private $username = "your username";
+    private $password = "your password";
 
     public $conn;
 
