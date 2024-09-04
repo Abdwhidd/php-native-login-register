@@ -1,7 +1,7 @@
 <?php
 
 class Database {
-    private $host = "127.0..1";
+    private $host = "127.0.0.1";
     private $db_name = "phplogin_db";
     private $username = "root";
     private $password = "";
@@ -26,3 +26,4 @@ class Database {
     }
 
 }
+
