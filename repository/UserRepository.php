@@ -29,4 +29,14 @@ class UserRepository {
         // Jika tidak ditemukan, kembalikan null
         return null;
     }
+
+    public function save(User $user) {
+        $query = "INSERT INTO users (name, email, password) VALUES (:name, :email, :password)";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":name", $user->name);
+        $stmt->bindParam(":email", $user->email);
+        $stmt->bindParam(":password", password_hash($user->password, PASSWORD_BCRYPT));
+        
+        return $stmt->execute();
+    }
 }
